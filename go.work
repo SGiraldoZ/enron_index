@@ -1,0 +1,8 @@
+go 1.22.0
+
+
+use (
+	./
+	./chi-api
+	./indexer_v1
+)

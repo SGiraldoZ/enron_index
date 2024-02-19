@@ -1,0 +1,26 @@
+version: '3'
+services:
+    ZincSearch:
+        image: public.ecr.aws/zinclabs/zincsearch:latest
+        restart: always
+        container_name: zinc_search
+        ports:
+        - 4080:4080
+        environment:
+        - ZINC_DATA_PATH="/opt/data"
+        - ZINC_FIRST_ADMIN_USER=admin 
+        - ZINC_FIRST_ADMIN_PASSWORD=Complexpass#123
+        user: root
+        volumes:
+        - ./data/:/opt/data
+    vis_enron:
+        container_name: vis_enron
+        image: node:lts
+        working_dir: /var/www/html/app/
+        entrypoint: /bin/bash
+        ports:
+        - 8000:8000
+        volumes:
+        - ./enron_gui/:/var/www/html/app
+        tty: true
+        
